@@ -2,8 +2,6 @@
 //  quiz0828App.swift
 //  quiz0828
 //
-//  Created by 瓦井つばさ on 2023/08/28.
-//
 
 import SwiftUI
 

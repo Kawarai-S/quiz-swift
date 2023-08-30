@@ -24,21 +24,7 @@ struct ContentView: View {
                 Spacer()
                 ForEach(0..<choice.count, id: \.self){ num in
                     Button{
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
-                            isShowJudgeImage = true
-                        }
-                        if choice[num] == answer {
-                            jugeImageName = "circlebadge"
-                            judgeImageColor = .red
-                            print("正解です。")
-                        } else {
-                            jugeImageName = "multiply"
-                            judgeImageColor = .blue
-                            print("不正解です。")
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                            isShowJudgeImage = false
-                        }
+                        choiceButtonAction(selectAnswer: choice[num])
                     }label: {
                         Text(choice[num])
                             .padding()
@@ -57,6 +43,16 @@ struct ContentView: View {
                     .foregroundColor(judgeImageColor)
                     .font(.system(size: 400, weight: .bold))
             }
+        }
+    }
+    func choiceButtonAction(selectAnswer: String){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+            isShowJudgeImage = true
+        }
+        jugeImageName = selectAnswer == answer ? "circlebadge" : "multiply"
+        judgeImageColor = selectAnswer == answer ? .red : .blue
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            isShowJudgeImage = false
         }
     }
 }
